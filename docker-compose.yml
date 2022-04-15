@@ -1,0 +1,39 @@
+version: "3.0"
+services:
+  redis:
+    image: redis
+    volumes:
+      - redis_data:/data:rw
+    ports:
+      - 6379:6379
+    networks:
+      net:
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=Aa1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:rw
+    ports:
+      - 5432:5432
+    networks:
+      net:    
+  
+  compass:
+    image: digitalcircle/compass:arm64
+    ports:
+      - 8080:8080
+    networks:
+      net: 
+      
+  auth:
+    image: digitalcircle/authapi:arm64
+    networks:
+      net:      
+volumes:
+  redis_data:
+  postgres_data:
+
+networks:
+  net:
