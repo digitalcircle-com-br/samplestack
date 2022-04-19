@@ -30,6 +30,10 @@ services:
   auth:
     image: digitalcircle/authapi:arm64
     networks:
+      net: 
+  dbapi:
+    image: digitalcircle/dbapi:arm64
+    networks:
       net:      
 volumes:
   redis_data:
